@@ -32,7 +32,7 @@ if($toggle === 'on'){
 function load_classphp($directory) {
     if(is_dir($directory)) {
         $scan = scandir($directory);
-        unset($scan[array_search('.')], $scan[array_search('..')]); //unset . and ..
+        unset($scan[array_search('.',$scan)], $scan[array_search('..',$scan)]); //unset . and ..
         foreach($scan as $file) {
             if(is_dir($directory."/".$file)) {
                 load_classphp($directory."/".$file);
