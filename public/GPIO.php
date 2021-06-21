@@ -2,10 +2,10 @@
     
 try{
   
-  require("../vendor/autoload.php");
-  
   use PiPHP\GPIO\GPIO;
   use PiPHP\GPIO\Pin\PinInterface;
+  
+  require("../vendor/autoload.php");
   
   $pin_number = isset($_POST['pin_number']) ? $_POST['pin_number'] : null;
   
