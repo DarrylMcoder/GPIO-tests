@@ -1,6 +1,6 @@
 <?PHP
 
-   require("../vendor/autoload.php");
+   load_classphp("../src");
     
   use PiPHP\GPIO\GPIO;
   use PiPHP\GPIO\Pin\PinInterface;
@@ -27,4 +27,20 @@ if($toggle === 'on'){
   
 } catch(Exception $e){
   echo $e->getMessage();
+}
+
+function load_classphp($directory) {
+    if(is_dir($directory)) {
+        $scan = scandir($directory);
+        unset($scan[0], $scan[1]); //unset . and ..
+        foreach($scan as $file) {
+            if(is_dir($directory."/".$file)) {
+                load_classphp($directory."/".$file);
+            } else {
+                if(strpos($file, '.php') !== false) {
+                    include_once($directory."/".$file);
+                }
+            }
+        }
+    }
 }
