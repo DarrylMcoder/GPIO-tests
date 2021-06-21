@@ -5,7 +5,7 @@
   use PiPHP\GPIO\GPIO;
   use PiPHP\GPIO\Pin\PinInterface;
  
-try{
+/*try{
   
   $pin_number = isset($_POST['pin_number']) ? $_POST['pin_number'] : null;
   
@@ -27,7 +27,7 @@ if($toggle === 'on'){
   
 } catch(Exception $e){
   echo $e->getMessage();
-}
+}*/
 
 function load_classphp($directory) {
     if(is_dir($directory)) {
