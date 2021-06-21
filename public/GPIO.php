@@ -39,6 +39,7 @@ function load_classphp($directory) {
             } else {
                 if(strpos($file, '.php') !== false) {
                     include_once($directory."/".$file);
+                  echo $directory."/".$file;
                 }
             }
         }
