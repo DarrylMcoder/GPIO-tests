@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=320, initial-scale=1">
+    <meta charset="utf-8">
+    <title>PHP GPIO switch</title>
+    <style>
+      body, html {
+        min-width: 100%;
+        min-height: 100%;
+        margin: 0;
+        padding: 0;
+        font: Arial 14px;
+      }
+    </style>
+    <!-- load Jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  </head>
+  <body>
+    <div class="content">
+      <h1>
+        PHP GPIO switch
+      </h1>
+      <p>
+        GPIO PIN NUMBER<br>
+      </p>
+      <input type="tel"  placeholder="10" size="2" id="num"><br>
+      <button class="go" id="on">
+        ON
+      </button>
+      <button class="go" id="off">
+        OFF
+      </button>
+      <div class="info" id="result">
+        
+      </div>
+    </div>
+    <script type="text/javascript">
+      //Jquery code
+      $(function(){
+        var pin_number = $("#num").val();
+        $("#on").click(function() {
+          toggle("on",pin_number);
+        });
+        
+        $("#off").click(function() {
+          toggle("off",pin_number);
+        });
+      });
+      
+      function toggle(toggle,pin_number) {
+        var data = new FormData();
+        data.append("toggle",toggle);
+        data.append("pin_number",pin_number);
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST","GPIO.php");
+        xhr.onreadystatechange = function() {
+          if(xhr.readyState === 4) {
+            if(xhr.status === 200) {
+              alert(xhr.responseText); 
+             $("#result").html(xhr.responseText);
+            }else{
+              alert("XMLHttpRequest error:\nStatus:"+xhr.status+"\nResponse:"+xhr.responseText);
+            }
+          }
+        };
+        xhr.send(data);
+      }
+    </script>
+  </body>
+</html>
