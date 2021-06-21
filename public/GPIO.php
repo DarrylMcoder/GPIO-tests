@@ -2,8 +2,8 @@
 
    load_classphp("../src");
     
-  use PiPHP\GPIO\GPIO;
-  use PiPHP\GPIO\Pin\PinInterface;
+ // use PiPHP\GPIO\GPIO;
+ // use PiPHP\GPIO\Pin\PinInterface;
  
 /*try{
   
